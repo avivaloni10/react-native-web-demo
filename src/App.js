@@ -1,97 +1,46 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import * as React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { Appbar, Avatar, Button, Card, Paragraph, Title } from 'react-native-paper';
 
-import React from 'react';
-import {
-  SafeAreaView,
+const App = () => {
+  const _goBack = () => console.log('Went back');
 
-  ScrollView,
+  const _handleSearch = () => console.log('Searching');
 
+  const _handleMore = () => console.log('Shown more');
 
-  StatusBar, StyleSheet,
+  const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
+  const styles = StyleSheet.create({
+    container: {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '50%'
+    }
+  });
 
-  Text, View
-} from 'react-native';
-import { Button } from 'react-native-paper';
-
-
-const App: () => React$Node = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>Hello world!</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>Hello world!</Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>Hello world!</Text>
-              <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-                Press me
-              </Button>
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <View>
+      <Appbar.Header>
+        <Appbar.BackAction onPress={_goBack} />
+        <Appbar.Content title="Title" subtitle="Subtitle" />
+        <Appbar.Action icon="magnify" onPress={_handleSearch} />
+        <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
+      </Appbar.Header>
+      <Card>
+        <Card.Title title="Card Title" subtitle="Card Subtitle" left={LeftContent} />
+        <Card.Content>
+          <Title>Card title</Title>
+          <Paragraph>Card content</Paragraph>
+        </Card.Content>
+        <Card.Cover style={styles.container} source={{ uri: 'https://picsum.photos/700' }} />
+        <Card.Actions>
+          <Button>Cancel</Button>
+          <Button>Ok</Button>
+        </Card.Actions>
+      </Card>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600'
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400'
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
